@@ -16,7 +16,11 @@ console.log();
 // fs.constants.S_IROTH	0o4	read by others
 // fs.constants.S_IWOTH	0o2	write by others
 // fs.constants.S_IXOTH	0o1	execute/search by others
-fs.writeFileSync("./types/index.d.ts", 'declare type XtifyIcons='+svgs.map(({name})=>{
+const svgNames = svgs.map(({name})=>{
     return "\""+path.basename(name).replace(path.extname(name), "").toLocaleLowerCase()+"\"";
-}).join("|"), {
+});
+const svgTables = svgs.map(({name,path})=>{
+    return `|${name}|![${name}](${path})|`
 })
+fs.writeFileSync("./types/index.d.ts", 'declare type XtifyIcons='+svgNames.join("|"))
+fs.writeFileSync("./README.md", ['|图标名|图标样式|','|---|---|'].concat(svgTables).join('\n'))
