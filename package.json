@@ -3,12 +3,20 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "exports": [
-  ],
+  "exports": [],
   "scripts": {
+    "dev": "esno index.ts -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^20.10.6",
+    "fast-glob": "^3.3.2"
+  },
+  "devDependencies": {
+    "esno": "^4.0.0",
+    "pnpm": "^8.14.0"
+  }
 }
