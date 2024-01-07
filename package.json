@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "exports": [],
+  "exports": {
+    "react": "./react/index.tsx",
+    "types":"./types/index.d.ts"
+  },
   "scripts": {
     "dev": "esno index.ts -w",
     "build": "esno index.ts",
