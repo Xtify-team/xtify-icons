@@ -5,11 +5,11 @@
   "main": "index.js",
   "exports": {
     "react": "./react/index.tsx",
-    "types":"./types/index.d.ts"
+    "types": "./types/index.d.ts"
   },
   "scripts": {
-    "dev": "esno index.ts -w",
-    "build": "esno index.ts",
+    "dev": "esno scripts/index.ts --watch",
+    "build": "esno scripts/index.ts --build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -17,10 +17,25 @@
   "license": "ISC",
   "dependencies": {
     "@types/node": "^20.10.6",
-    "fast-glob": "^3.3.2"
+    "@types/react": "^18.2.47",
+    "fast-glob": "^3.3.2",
+    "prop-types": "^15.8.1",
+    "react": "^18.2.0",
+    "vite-plugin-svg-icons": "^2.0.1",
+    "vite-plugin-svg-sprite-component": "^1.0.10"
   },
   "devDependencies": {
+    "@types/debug": "^4.1.12",
+    "@types/prop-types": "^15.7.11",
+    "debug": "^4.3.4",
     "esno": "^4.0.0",
-    "pnpm": "^8.14.0"
+    "etag": "^1.8.1",
+    "pnpm": "^8.14.0",
+    "prettier": "^2.8.8",
+    "svg-baker": "^1.7.0",
+    "svgo": "^3.2.0",
+    "unbuild": "^2.0.0",
+    "vite": "^5.0.11",
+    "vitest": "^1.1.3"
   }
 }
