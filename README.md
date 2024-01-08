@@ -8,15 +8,14 @@ npm add xtify-icons@git+https://github.com/Xtify-team/xtify-icons.git
 
 ```jsx
 import {XtifyIconAvatar} from "xtify-icons"
-// or
-import "xtify-icons/css"
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
         <XtifyIconAvatar></XtifyIconAvatar>
     </React.StrictMode>,
 )
-
+// or
+import "xtify-icons/css"
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<React.StrictMode>
         <i className={"xtify-icon avatar"}></i>
