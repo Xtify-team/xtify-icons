@@ -1,0 +1,162 @@
+[
+  {
+    "name": "AsciiToHex",
+    "path": "C:\\Users\\1\\Desktop\\自用文件\\xtify-icons\\icons\\ASCII-to-Hex.svg"
+  },
+  {
+    "name": "Avatar",
+    "path": "C:\\Users\\1\\Desktop\\自用文件\\xtify-icons\\icons\\Avatar.svg"
+  },
+  {
+    "name": "BackslashEscape1",
+    "path": "C:\\Users\\1\\Desktop\\自用文件\\xtify-icons\\icons\\Backslash-Escape-1.svg"
+  },
+  {
+    "name": "BackslashEscape",
+    "path": "C:\\Users\\1\\Desktop\\自用文件\\xtify-icons\\icons\\Backslash-Escape.svg"
+  },
+  {
+    "name": "Base64ImageEncodeDecode",
+    "path": "C:\\Users\\1\\Desktop\\自用文件\\xtify-icons\\icons\\Base64-Image-Encode-Decode.svg"
+  },
+  {
+    "name": "Base64StringEncodeDecode",
+    "path": "C:\\Users\\1\\Desktop\\自用文件\\xtify-icons\\icons\\Base64-String-Encode-Decode.svg"
+  },
+  {
+    "name": "ColorConverter",
+    "path": "C:\\Users\\1\\Desktop\\自用文件\\xtify-icons\\icons\\Color-Converter.svg"
+  },
+  {
+    "name": "CronJobParser",
+    "path": "C:\\Users\\1\\Desktop\\自用文件\\xtify-icons\\icons\\Cron-Job-Parser.svg"
+  },
+  {
+    "name": "CssBeautifyMinify",
+    "path": "C:\\Users\\1\\Desktop\\自用文件\\xtify-icons\\icons\\CSS-Beautify-Minify.svg"
+  },
+  {
+    "name": "Empty1",
+    "path": "C:\\Users\\1\\Desktop\\自用文件\\xtify-icons\\icons\\Empty1.svg"
+  },
+  {
+    "name": "Empty2",
+    "path": "C:\\Users\\1\\Desktop\\自用文件\\xtify-icons\\icons\\Empty2.svg"
+  },
+  {
+    "name": "ErbBeautifyMinify",
+    "path": "C:\\Users\\1\\Desktop\\自用文件\\xtify-icons\\icons\\ERB-Beautify-Minify.svg"
+  },
+  {
+    "name": "HashGenerator",
+    "path": "C:\\Users\\1\\Desktop\\自用文件\\xtify-icons\\icons\\Hash-Generator.svg"
+  },
+  {
+    "name": "HexToAscii",
+    "path": "C:\\Users\\1\\Desktop\\自用文件\\xtify-icons\\icons\\Hex-to-ASCII.svg"
+  },
+  {
+    "name": "HtmlBeautifyMinify",
+    "path": "C:\\Users\\1\\Desktop\\自用文件\\xtify-icons\\icons\\HTML-Beautify-Minify.svg"
+  },
+  {
+    "name": "HtmlEntityEncodeDecode",
+    "path": "C:\\Users\\1\\Desktop\\自用文件\\xtify-icons\\icons\\HTML-Entity-Encode-Decode.svg"
+  },
+  {
+    "name": "HtmlPreview",
+    "path": "C:\\Users\\1\\Desktop\\自用文件\\xtify-icons\\icons\\HTML-Preview.svg"
+  },
+  {
+    "name": "HtmlToJsx",
+    "path": "C:\\Users\\1\\Desktop\\自用文件\\xtify-icons\\icons\\HTML-to-JSX.svg"
+  },
+  {
+    "name": "JsBeautifyMinify",
+    "path": "C:\\Users\\1\\Desktop\\自用文件\\xtify-icons\\icons\\JS-Beautify-Minify.svg"
+  },
+  {
+    "name": "JsonFormatValidate",
+    "path": "C:\\Users\\1\\Desktop\\自用文件\\xtify-icons\\icons\\JSON-Format-Validate.svg"
+  },
+  {
+    "name": "JsonToYaml",
+    "path": "C:\\Users\\1\\Desktop\\自用文件\\xtify-icons\\icons\\JSON-to-YAML.svg"
+  },
+  {
+    "name": "LessBeautifyMinify",
+    "path": "C:\\Users\\1\\Desktop\\自用文件\\xtify-icons\\icons\\LESS-Beautify-Minify.svg"
+  },
+  {
+    "name": "LoremIpsumGenerator",
+    "path": "C:\\Users\\1\\Desktop\\自用文件\\xtify-icons\\icons\\Lorem-Ipsum-Generator.svg"
+  },
+  {
+    "name": "MarkdownPreview",
+    "path": "C:\\Users\\1\\Desktop\\自用文件\\xtify-icons\\icons\\Markdown-Preview.svg"
+  },
+  {
+    "name": "New",
+    "path": "C:\\Users\\1\\Desktop\\自用文件\\xtify-icons\\icons\\New.svg"
+  },
+  {
+    "name": "NumberBaseConverter",
+    "path": "C:\\Users\\1\\Desktop\\自用文件\\xtify-icons\\icons\\Number-Base-Converter.svg"
+  },
+  {
+    "name": "Placeholder",
+    "path": "C:\\Users\\1\\Desktop\\自用文件\\xtify-icons\\icons\\Placeholder.svg"
+  },
+  {
+    "name": "QrCodeReaderGenerator",
+    "path": "C:\\Users\\1\\Desktop\\自用文件\\xtify-icons\\icons\\QR-Code-Reader-Generator.svg"
+  },
+  {
+    "name": "RandomStringGenerator",
+    "path": "C:\\Users\\1\\Desktop\\自用文件\\xtify-icons\\icons\\Random-String-Generator.svg"
+  },
+  {
+    "name": "RegexpTester",
+    "path": "C:\\Users\\1\\Desktop\\自用文件\\xtify-icons\\icons\\RegExp-Tester.svg"
+  },
+  {
+    "name": "ScssBeautifyMinify",
+    "path": "C:\\Users\\1\\Desktop\\自用文件\\xtify-icons\\icons\\SCSS-Beautify-Minify.svg"
+  },
+  {
+    "name": "SqlFormatter",
+    "path": "C:\\Users\\1\\Desktop\\自用文件\\xtify-icons\\icons\\SQL-Formatter.svg"
+  },
+  {
+    "name": "StringCaseConverter",
+    "path": "C:\\Users\\1\\Desktop\\自用文件\\xtify-icons\\icons\\String-Case-Converter.svg"
+  },
+  {
+    "name": "TextDiffChecker",
+    "path": "C:\\Users\\1\\Desktop\\自用文件\\xtify-icons\\icons\\Text-Diff-Checker.svg"
+  },
+  {
+    "name": "UnixTimeConverter",
+    "path": "C:\\Users\\1\\Desktop\\自用文件\\xtify-icons\\icons\\Unix-Time-Converter.svg"
+  },
+  {
+    "name": "UrlEncodeDecode",
+    "path": "C:\\Users\\1\\Desktop\\自用文件\\xtify-icons\\icons\\URL-Encode-Decode.svg"
+  },
+  {
+    "name": "UrlParser",
+    "path": "C:\\Users\\1\\Desktop\\自用文件\\xtify-icons\\icons\\URL-Parser.svg"
+  },
+  {
+    "name": "UuidUlidGenerateDecode",
+    "path": "C:\\Users\\1\\Desktop\\自用文件\\xtify-icons\\icons\\UUID-ULID-Generate-Decode.svg"
+  },
+  {
+    "name": "XmlBeautifyMinify",
+    "path": "C:\\Users\\1\\Desktop\\自用文件\\xtify-icons\\icons\\XML-Beautify-Minify.svg"
+  },
+  {
+    "name": "YamlToJson",
+    "path": "C:\\Users\\1\\Desktop\\自用文件\\xtify-icons\\icons\\YAML-to-JSON.svg"
+  }
+]
