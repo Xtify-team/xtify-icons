@@ -66,30 +66,6 @@ function writeDoc() {
     return sys.success('write README.md success');
 }
 
-function writeTypes() {
-    const svgNames = svgs.map(({name}) => {
-        return "\"" + path.basename(name).replace(path.extname(name), "").toLocaleLowerCase() + "\"";
-    });
-    try {
-        fs.writeFileSync(resolve("./icons.d.ts"), templateTypes(svgNames.join("|")));
-    } catch (err) {
-        return sys.error('error', err);
-    }
-    return sys.success('write types/index.d.ts success');
-}
-
-
-function writeJSON() {
-    // @ts-ignore
-    const json = svgs.reduce((pre, {name, path: _path}) => {
-        return {
-            ...pre,
-            [_.startCase(_.toLower(path.basename(name).replace(path.extname(name), ""))).split(" ").join("")]: path.resolve(__dirname, _path)
-        };
-    }, {});
-    fs.writeFileSync(resolve("./icons.json"), JSON.stringify(json, null, 2));
-}
-
 
 import {importModule} from 'local-pkg';
 import svgrJsx from "@svgr/plugin-jsx";
@@ -174,6 +150,4 @@ function writeCodeDefination() {
 }
 
 writeDoc();
-writeTypes();
-writeJSON();
 writeCodeDefination();
