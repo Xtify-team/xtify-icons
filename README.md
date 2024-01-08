@@ -7,12 +7,23 @@ npm add xtify-icons@git+https://github.com/Xtify-team/xtify-icons.git
 ### In React
 
 ```jsx
-import {XtifyIconAvatar} from 'xtify-icons';
-ReactDOM.createRoot(document.getElementById('root')!).render(
+import {XtifyIconAvatar} from "xtify-icons"
+// or
+import "xtify-icons/css"
+
+ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
         <XtifyIconAvatar></XtifyIconAvatar>
     </React.StrictMode>,
-);
+)
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+	<React.StrictMode>
+        <i className={"xtify-icon avatar"}></i>
+	</React.StrictMode>,
+)
+
+
 ```
 ### 图标详情
 |图标名|图标样式|
