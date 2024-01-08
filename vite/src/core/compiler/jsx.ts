@@ -1,11 +1,10 @@
 import {importModule} from 'local-pkg';
 import type {Compiler} from './types';
 import _ from 'lodash';
-
+import svgrJsx from "@svgr/plugin-jsx"
 export const JSXCompiler = (async (
   svg,
-  collection,
-  icon,
+  componentName,
   options,
 ) => {
   const svgrCore = await importModule('@svgr/core');
@@ -16,9 +15,9 @@ export const JSXCompiler = (async (
   let res = await svgr(
     svg,
     {
-      plugins: ['@svgr/plugin-jsx'],
+      plugins: [svgrJsx],
     },
-    {componentName: _.kebabCase(`${collection}-${icon}`)},
+    {componentName},
   );
   // svgr does not provide an option to support preact (WHY?),
   // we manually remove the react import for preact

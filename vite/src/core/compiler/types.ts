@@ -3,8 +3,7 @@ import type {ResolvedOptions} from '../../types';
 
 export type Compiler = (
   svg: string,
-  collection: string,
-  icon: string,
+  componentName: string,
   options: ResolvedOptions
 ) => string | Promise<string>
 

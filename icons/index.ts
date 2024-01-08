@@ -6,18 +6,23 @@ import _ from 'lodash';
 
 import SVGCompiler from 'svg-baker';
 import {logger} from "xtify-shared";
+import pkg from './package.json';
 
 const sys = logger('xtify-icons');
 
+
 sys.enabled();
 
-const iconBase = path.relative(__dirname,"./icons");
+const iconBase = path.relative(__dirname,"./src");
 const cwd = process.cwd();
 const resolve = (rel: string) => path.resolve(__dirname, rel);
-const templateTypes = (svgNames: string) => `export declare type XtifyIcons = ${svgNames}`;
+const templateTypes = (svgNames: string) => `export declare module '${pkg.name}' {
+  export type XtifyIcons = ${svgNames};
+  export default {} as Record<XtifyIcons,string>;
+} `;
 const templateDoc = (svgNames: string) => `|图标名|图标样式|\n|---|---|\n${svgNames}`;
 const svgs = fg.globSync(
-  [ "./icons/*.svg"],
+  [ "./src/*.svg"],
   {objectMode: true, onlyFiles: true, dot: true}
 );
 
@@ -49,7 +54,7 @@ function writeTypes() {
     return "\"" + path.basename(name).replace(path.extname(name), "").toLocaleLowerCase() + "\"";
   });
   try {
-    fs.writeFileSync(resolve("./index.d.ts"), templateTypes(svgNames.join("|")));
+    fs.writeFileSync(resolve("./icons.d.ts"), templateTypes(svgNames.join("|")));
   } catch (err) {
     return sys.error('error', err);
   }
@@ -57,42 +62,17 @@ function writeTypes() {
 }
 
 
-export async function compilerIcon(
-  file: string,
-  symbolId: string,
-  svgOptions: {},
-): Promise<string | null> {
-  if (!file) {
-    return null;
-  }
-
-  let content = fs.readFileSync(file, 'utf-8');
-
-  if (svgOptions) {
-    const {data} = optimize(content, svgOptions);
-    content = data || content;
-  }
-
-  // fix cannot change svg color  by  parent node problem
-  content = content.replace(/stroke="[a-zA-Z#0-9]*"/, 'stroke="currentColor"');
-  const svgSymbol = new SVGCompiler().addSymbol({
-    id: symbolId,
-    content,
-    path: file,
-  });
-  return svgSymbol.render();
-}
-
 function writeJSON() {
+  // @ts-ignore
   const json = svgs.reduce((pre, {name, path: _path}) => {
-    return [...pre, {
-      name: _.startCase(_.toLower(path.basename(name).replace(path.extname(name), ""))).split(" ").join(""),
-      path: path.resolve(__dirname, "..", _path)
-    }];
-  }, []);
+    return {
+      ...pre,
+      [_.startCase(_.toLower(path.basename(name).replace(path.extname(name), ""))).split(" ").join("")]: path.resolve(__dirname, _path)
+    };
+  }, {});
   fs.writeFileSync(resolve("./icons.json"), JSON.stringify(json, null, 2));
 }
 
 writeDoc();
-// writeTypes();
+writeTypes();
 writeJSON();

@@ -20,8 +20,9 @@ export function vitePluginsXtifyIcons(options: Options) {
 
                 if (compiler && typeof compiler !== 'string') {
                 } else {
+                  console.log(res,resolved)
                     if (!resolved.icon) {
-                        return `${res}?all=true`;
+                        return `${res}index.jsx?all=true`;
                     }
                     return `${res}.jsx`;
                 }
@@ -49,14 +50,14 @@ export function vitePluginsXtifyIcons(options: Options) {
                             map: {version: 3, mappings: '', sources: []} as any,
                         };
                     }
-                }
-            } else {
-                const code = await generateComponentFromPath(id, {}) || null;
-                if (code) {
+                } else if (query['name']){
+                  const code = await generateComponent(query['name']);
+                  if (code) {
                     return {
-                        code,
-                        map: {version: 3, mappings: '', sources: []} as any,
-                    };
+                      code,
+                      map: {version: 3, mappings: '', sources: []} as any,
+                    }
+                  }
                 }
             }
         },
