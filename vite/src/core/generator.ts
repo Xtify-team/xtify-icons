@@ -12,12 +12,14 @@ export async function generateComponentFromPath(path: string, options: ResolvedO
   return generateComponent(resolved, options);
 }
 
-import IconsJSON from "../icons/icons.json";
+import IconsJSON from "xtify-icons";
 import {escape} from "lodash";
 
 export async function generateComponentAll(path: string, options: ResolvedOptions) {
-  let declare = IconsJSON.map(({name, path}) => {
+  console.log(IconsJSON)
+  let declared = IconsJSON.map(({name, path}) => {
     return `"${name}": ()=>import("~xtify-icons/${name}")`;
   });
-  return `export default {${declare.join(",")}}`;
+  console.log(declared)
+  return `export default {${declared.join(",")}}`;
 }

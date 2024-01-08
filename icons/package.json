@@ -1,0 +1,17 @@
+{
+  "name": "xtify-icons",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "esno index.ts"
+  },
+  "exports": {
+    "default": "./icons.json"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {}
+}

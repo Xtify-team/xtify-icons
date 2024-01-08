@@ -8,14 +8,16 @@ import SVGCompiler from 'svg-baker';
 import {logger} from "xtify-shared";
 
 const sys = logger('xtify-icons');
+
 sys.enabled();
 
+const iconBase = path.relative(__dirname,"./icons");
 const cwd = process.cwd();
-const resolve = (rel: string) => path.resolve(cwd, rel);
+const resolve = (rel: string) => path.resolve(__dirname, rel);
 const templateTypes = (svgNames: string) => `export declare type XtifyIcons = ${svgNames}`;
 const templateDoc = (svgNames: string) => `|图标名|图标样式|\n|---|---|\n${svgNames}`;
 const svgs = fg.globSync(
-  [path.relative(cwd, resolve("./icons/")) + "/*.svg"],
+  [ "./icons/*.svg"],
   {objectMode: true, onlyFiles: true, dot: true}
 );
 
@@ -47,7 +49,7 @@ function writeTypes() {
     return "\"" + path.basename(name).replace(path.extname(name), "").toLocaleLowerCase() + "\"";
   });
   try {
-    fs.writeFileSync(resolve("./types/index.d.ts"), templateTypes(svgNames.join("|")));
+    fs.writeFileSync(resolve("./index.d.ts"), templateTypes(svgNames.join("|")));
   } catch (err) {
     return sys.error('error', err);
   }
@@ -88,9 +90,9 @@ function writeJSON() {
       path: path.resolve(__dirname, "..", _path)
     }];
   }, []);
-  fs.writeFileSync(path.resolve(__dirname, "..", "icons.json"), JSON.stringify(json, null, 2));
+  fs.writeFileSync(resolve("./icons.json"), JSON.stringify(json, null, 2));
 }
 
 writeDoc();
-writeTypes();
+// writeTypes();
 writeJSON();
