@@ -1,47 +1,17 @@
-import fg from "fast-glob";
 import * as path from 'path';
 import * as fs from 'fs';
 import _ from 'lodash';
 
-import {logger} from "xtify-shared";
-import pkg from './package.json';
+import {importModule} from 'local-pkg';
+import svgrJsx from "@svgr/plugin-jsx";
+import {templateDoc} from "./scripts/template";
+import {svgs} from "./scripts/getAllSvgs";
+import {debug} from "./scripts/debug";
+import {DST, only, resolve} from "./scripts/dirs";
+import toSpriteSvg from "./scripts/toSpriteSvg";
 
-const sys = logger('xtify-icons');
 
 
-sys.enabled();
-
-const iconBase = path.relative(__dirname, "./src");
-const cwd = process.cwd();
-const only = (name) => path.basename(name).replace(path.extname(name), "");
-const resolve = (rel: string) => path.resolve(__dirname, rel);
-const templateTypes = (svgNames: string) => `export declare module '${pkg.name}' {
-  export type XtifyIcons = ${svgNames};
-  export default {} as Record<XtifyIcons,string>;
-} `;
-const templateDoc = (svgNames: string) => `
-# Xtify Icons
-## How to use 
-\`\`\`shell
-npm add xtify-icons@git+https://github.com/Xtify-team/xtify-icons.git
-\`\`\`
-### In React
-
-\`\`\`jsx
-import {XtifyIconAvatar} from '${pkg.name}';
-ReactDOM.createRoot(document.getElementById('root')!).render(
-    <React.StrictMode>
-        <XtifyIconAvatar></XtifyIconAvatar>
-    </React.StrictMode>,
-);
-\`\`\`
-### 图标详情
-|图标名|图标样式|\n|---|---|\n${svgNames}`;
-
-const svgs = fg.globSync(
-    ["./src/*.svg"],
-    {objectMode: true, onlyFiles: true, dot: true}
-);
 
 function writeDoc() {
 
@@ -61,14 +31,10 @@ function writeDoc() {
     try {
         fs.writeFileSync(resolve("./README.md"), templateDoc(svgTables.join('\n')));
     } catch (err) {
-        return sys.error('error', err);
+        return debug.error('error', err);
     }
-    return sys.success('write README.md success');
+    return debug.success('write README.md success');
 }
-
-
-import {importModule} from 'local-pkg';
-import svgrJsx from "@svgr/plugin-jsx";
 
 
 export const JSXCompiler = (async (
@@ -86,7 +52,7 @@ export const JSXCompiler = (async (
         {
             jsxRuntime: options.jsx !== 'react' ? "automatic" : "classic",
             prettier: false,
-            memo: options.jsx !== 'react' ? false : true,
+            memo: options.jsx === 'react',
             plugins: [svgrJsx],
         },
         {componentName},
@@ -97,18 +63,15 @@ export const JSXCompiler = (async (
 });
 
 function writeCodeDefination() {
-    const dist = resolve("dist/");
+    const dist = DST("jsx");
     const isExist = fs.existsSync(dist);
     if (!isExist) {
         fs.mkdirSync(dist, {
             recursive: true,
         });
     }
-    const templateCode = async (name, path) => {
-        let _path = path;
-        const content = fs.readFileSync(_path).toString();
+    const templateCode = async (name, content) => {
         return await JSXCompiler(content, name, {
-            scale: 0,
             defaultStyle: "",
             defaultClass: "",
             compiler: "jsx",
@@ -123,19 +86,27 @@ function writeCodeDefination() {
 
     let res = "";
     let defination = "";
-    svgs.forEach(async ({name, path: _path}) => {
+    svgs.forEach(async ({name, path: _path, content}) => {
         let _name = _.startCase(_.toLower(only(name))).split(" ").join("");
         res += `export {default as XtifyIcon${_name}} from "./${_name}.jsx";`;
         defination += `export const XtifyIcon${_name}:typeof import("./${_name}");`;
-        fs.writeFile(path.resolve(dist, _name + ".jsx"), await templateCode(_name, _path), null, (err) => {
-            if (err) {
-                sys.error(err);
-            }
-        });
+        fs.writeFile(path.resolve(dist, _name + ".jsx"), await templateCode(_name, content),
+            null,
+            (err) => {
+                if (err) {
+                    debug.error(err);
+                }
+            });
     });
-    fs.writeFile(path.resolve(dist, 'index' + ".jsx"), res, null, (err) => {
+    fs.writeFile(path.resolve(dist, 'index' + ".jsx"), `
+    import "../css/index.css";
+    ${res}
+    export default function XtifyIcon(name, ...props) {
+        return <i className={\`xtify-icon \${name}\`} {...props}></i>
+    } 
+    `, null, (err) => {
         if (err) {
-            sys.error(err);
+            debug.error(err);
         }
     });
     fs.writeFile(path.resolve(dist, 'index.d.ts'), `
@@ -144,10 +115,11 @@ function writeCodeDefination() {
         }
     `, null, (err) => {
         if (err) {
-            sys.error(err);
+            debug.error(err);
         }
     });
 }
 
 writeDoc();
 writeCodeDefination();
+toSpriteSvg();
