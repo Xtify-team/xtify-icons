@@ -2,46 +2,35 @@
   "name": "xtify-icons",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "exports": {
-    "react": "./react/index.tsx",
-    "types": "./types/index.d.ts"
-  },
+  "main": "index.ts",
   "scripts": {
-    "dev": "esno scripts/index.ts --watch",
-    "build": "esno scripts/index.ts --build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postinstall": "npm run build",
+    "build": "esno index.ts"
+  },
+  "exports": {
+    "import": {
+      "default": "./dist/index.jsx",
+      "require": "./dist/index.jsx",
+      "types": [
+        "./dist/index.d.ts"
+      ]
+    },
+    "types": [
+      "./dist/index.d.ts"
+    ]
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/node": "^20.10.6",
-    "@types/react": "^18.2.47",
+    "@svgr/plugin-jsx": "^8.1.0",
     "fast-glob": "^3.3.2",
     "local-pkg": "^0.5.0",
-    "lodash": "^4.17.21",
-    "prop-types": "^15.8.1",
-    "react": "^18.2.0",
-    "vite-plugin-svg-icons": "^2.0.1",
-    "vite-plugin-svg-sprite-component": "^1.0.10",
     "xtify-shared": "git+https://github.com/Xtify-team/shared.git"
   },
   "devDependencies": {
-    "@antfu/utils": "^0.7.7",
-    "@svgr/core": "^8.1.0",
-    "@types/debug": "^4.1.12",
-    "@types/lodash": "^4.14.202",
-    "@types/prop-types": "^15.7.11",
-    "debug": "^4.3.4",
+    "@types/node": "^20.10.7",
     "esno": "^4.0.0",
-    "etag": "^1.8.1",
-    "pnpm": "^8.14.0",
-    "prettier": "^2.8.8",
-    "svg-baker": "^1.7.0",
-    "svgo": "^3.2.0",
-    "unbuild": "^2.0.0",
-    "vite": "^5.0.11",
-    "vitest": "^1.1.3"
+    "lodash": "^4.17.21"
   }
 }

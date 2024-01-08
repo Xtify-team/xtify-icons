@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import XtifyIcon from 'virtual:xtify-icons';
+import {XtifyIconAvatar} from "xtify-icons";
 
-console.log(XtifyIcon);
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <XtifyIcon name="asd"></XtifyIcon>
-  </React.StrictMode>,
+    <React.StrictMode>
+        <XtifyIconAvatar></XtifyIconAvatar>
+    </React.StrictMode>,
 );
