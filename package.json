@@ -9,8 +9,8 @@
   },
   "exports": {
     ".": {
-      "default": "./dist/jsx/index.tsx",
-      "require": "./dist/jsx/index.tsx",
+      "default": "./dist/tsx/index.tsx",
+      "require": "./dist/tsx/index.tsx",
       "types": [
         "./dist/tsx/index.d.ts"
       ]
