@@ -1,61 +1,12 @@
-import SVGSpriter from "svg-sprite";
 import {svgs} from "./getAllSvgs";
 import File from 'vinyl';
 import path from "path";
 import * as fs from "fs";
 import {DST} from "./dirs";
-import _ from "lodash";
+import { sprite } from "./transformer/svg-sprite";
+import { INDEX_CSS } from "./template";
+import { debug } from "./debug";
 
-const sprite = new SVGSpriter(
-    {
-        multipass: true,
-        svg: {
-            doctypeDeclaration: false,
-            xmlDeclaration: false
-        },
-        shape: {
-            id: { // SVG shape ID related options
-                separator: "",
-                generator(__: string, file: File) { /*...*/
-                    return _.toLower(file.name);
-                }, // SVG shape ID generator callback
-            },
-            transform: [{
-                svgo: {
-                    multipass: true,
-                    plugins: [
-                        {
-                            name: 'preset-default',
-                            params: {
-                                overrides: {
-                                    removeUnknownsAndDefaults: {
-                                        keepRoleAttr: true
-                                    },
-                                    removeViewBox: false
-                                }
-                            }
-                        },
-                        'cleanupListOfValues',
-                        "cleanupAttrs",
-                        'convertStyleToAttrs',
-                        'sortAttrs',
-                        {
-                            name: 'removeAttrs',
-                            params: {
-                                attrs: [
-                                    'clip-rule',
-                                    'data-name',
-                                    'width',
-                                    'height'
-                                ]
-                            }
-                        }
-                    ]
-                }
-            }]
-        }
-    }
-);
 export default function toSpriteSvg() {
     svgs.forEach(({name, path: _path, content}) => {
         const file = new File({
@@ -75,13 +26,11 @@ export default function toSpriteSvg() {
             dimensions: true,
             prefix: ".xtify-icon.%s",
             sprite: "./sprite.css.svg",
+            template: `a`,
             bust: true,
             render: {
                 css: true,
             },
-            mixin: `
-                display: inline-block;
-            `,
             example: true,
         },
     }, (error, result: Record<string, File>, data) => {
@@ -92,18 +41,6 @@ export default function toSpriteSvg() {
             }
         });
     });
-    fs.writeFileSync(
-        path.join(DST("css"), "index.css"),
-        `
-        @import "./sprite.css";
-        .xtify-icon {
-            display: inline-block;
-            font-size: 16px;
-            font-style: normal;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-        `.replace(/\s+/g, "")
-    );
+    INDEX_CSS({})
 }
-import "./transformer/svg-sprite";
+

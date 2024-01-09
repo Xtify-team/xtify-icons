@@ -9,10 +9,10 @@
   },
   "exports": {
     ".": {
-      "default": "./dist/jsx/index.jsx",
-      "require": "./dist/jsx/index.jsx",
+      "default": "./dist/jsx/index.tsx",
+      "require": "./dist/jsx/index.tsx",
       "types": [
-        "./dist/jsx/index.d.ts"
+        "./dist/tsx/index.d.ts"
       ]
     },
     "./css": {
@@ -45,6 +45,7 @@
   "devDependencies": {
     "@types/minify": "^9.1.4",
     "@types/node": "^20.10.7",
-    "@types/vinyl": "^2.0.11"
+    "@types/vinyl": "^2.0.11",
+    "react": "^18.2.0"
   }
 }
