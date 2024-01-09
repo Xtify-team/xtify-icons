@@ -2,7 +2,7 @@
   "name": "xtify-icons",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "main": "dist/tsx/index.tsx",
   "scripts": {
     "postinstall": "npm run build",
     "build": "esno index.ts"
