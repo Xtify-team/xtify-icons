@@ -1,5 +1,5 @@
 declare module "{{pkg_name}}" {
 {{#component_list}}
-export const XtifyIcon{{name}}: typeof import('./{{name}}.tsx');
+export const XtifyIcon{{name}}: typeof import('./{{name}}');
 {{/component_list}}
 }
