@@ -36,6 +36,7 @@ const sprite = new SVGSpriter(
                             }
                         },
                         'cleanupListOfValues',
+                        "cleanupAttrs",
                         'convertStyleToAttrs',
                         'sortAttrs',
                         {
@@ -43,7 +44,9 @@ const sprite = new SVGSpriter(
                             params: {
                                 attrs: [
                                     'clip-rule',
-                                    'data-name'
+                                    'data-name',
+                                    'width',
+                                    'height'
                                 ]
                             }
                         }
@@ -67,6 +70,8 @@ export default function toSpriteSvg() {
         min: {
             mode: 'css',// Sprite with «css» mode,
             dest: 'min',
+            hasMixin: true,
+            includeDimensions: true,
             dimensions: true,
             prefix: ".xtify-icon.%s",
             sprite: "./sprite.css.svg",
@@ -101,3 +106,4 @@ export default function toSpriteSvg() {
         `.replace(/\s+/g, "")
     );
 }
+import "./transformer/svg-sprite";

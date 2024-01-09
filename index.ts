@@ -4,35 +4,15 @@ import _ from 'lodash';
 
 import {importModule} from 'local-pkg';
 import svgrJsx from "@svgr/plugin-jsx";
-import {templateDoc} from "./scripts/template";
+import {COMPONENT_JSX, INDEX_D_TS, INDEX_TS, README} from "./scripts/template";
 import {svgs} from "./scripts/getAllSvgs";
 import {debug} from "./scripts/debug";
 import {DST, only, resolve} from "./scripts/dirs";
 import toSpriteSvg from "./scripts/toSpriteSvg";
 
 
-
-
 function writeDoc() {
-
-// Constant	Octal	Description
-// fs.constants.S_IRUSR	0o400	read by owner
-// fs.constants.S_IWUSR	0o200	write by owner
-// fs.constants.S_IXUSR	0o100	execute/search by owner
-// fs.constants.S_IRGRP	0o40	read by group
-// fs.constants.S_IWGRP	0o20	write by group
-// fs.constants.S_IXGRP	0o10	execute/search by group
-// fs.constants.S_IROTH	0o4	read by others
-// fs.constants.S_IWOTH	0o2	write by others
-// fs.constants.S_IXOTH	0o1	execute/search by others
-    const svgTables = svgs.map(({name, path: _path}) => {
-        return `|${path.basename(name).replace(path.extname(name), "").toLocaleLowerCase()}|![${name}](${_path})|`;
-    });
-    try {
-        fs.writeFileSync(resolve("./README.md"), templateDoc(svgTables.join('\n')));
-    } catch (err) {
-        return debug.error('error', err);
-    }
+    README({icon_list: svgs});
     return debug.success('write README.md success');
 }
 
@@ -84,40 +64,14 @@ function writeCodeDefination() {
         });
     };
 
-    let res = "";
-    let defination = "";
+    const defination: { name: string }[] = [];
     svgs.forEach(async ({name, path: _path, content}) => {
         let _name = _.startCase(_.toLower(only(name))).split(" ").join("");
-        res += `export {default as XtifyIcon${_name}} from "./${_name}.jsx";`;
-        defination += `export const XtifyIcon${_name}:typeof import("./${_name}");`;
-        fs.writeFile(path.resolve(dist, _name + ".jsx"), await templateCode(_name, content),
-            null,
-            (err) => {
-                if (err) {
-                    debug.error(err);
-                }
-            });
+        defination.push({name: _name});
+        COMPONENT_JSX({component_name: _name, component_content: await templateCode(_name, content)});
     });
-    fs.writeFile(path.resolve(dist, 'index' + ".jsx"), `
-    import "../css/index.css";
-    ${res}
-    export default function XtifyIcon(name, ...props) {
-        return <i className={\`xtify-icon \${name}\`} {...props}></i>
-    } 
-    `, null, (err) => {
-        if (err) {
-            debug.error(err);
-        }
-    });
-    fs.writeFile(path.resolve(dist, 'index.d.ts'), `
-        declare module "xtify-icons" {
-            ${defination}
-        }
-    `, null, (err) => {
-        if (err) {
-            debug.error(err);
-        }
-    });
+    INDEX_TS({component_list: defination});
+    INDEX_D_TS({component_list: defination});
 }
 
 writeDoc();

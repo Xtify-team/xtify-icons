@@ -1,0 +1,31 @@
+# {{pkg_name}}
+## How to use
+```shell
+npm add xtify-icons@git+https://github.com/Xtify-team/xtify-icons.git
+```
+### In React
+```jsx
+import {XtifyIconAvatar} from 'xtify-icons';
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+<React.StrictMode>
+	<XtifyIconAvatar></XtifyIconAvatar>
+</React.StrictMode>,
+);
+
+// or
+import "xtify-icons/css";
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+<React.StrictMode>
+	<i className={'xtify-icon ascii-to-hex'}></i>
+</React.StrictMode>
+);
+```
+
+### 图标详情
+| 图标名 | 图标样式 |
+|-----|------|
+{{#icon_list}}
+|{{name}}|![{{name}}](src/{{name}}.svg)|
+{{/icon_list}}

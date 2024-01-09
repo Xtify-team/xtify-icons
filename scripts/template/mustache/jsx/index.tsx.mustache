@@ -1,0 +1,7 @@
+import * as React from "react";
+{{#component_list}}
+	export { default as XtifyIcon{{name}} } from "./{{name}}";
+{{/component_list}}
+export default function({name,...props}){
+return <i class="xtify-icon ${name}"></i>
+}
