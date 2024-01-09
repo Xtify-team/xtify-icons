@@ -40,7 +40,7 @@
     "svg-sprite": "^2.0.2",
     "template": "^0.17.5",
     "vinyl": "^3.0.0",
-    "xtify-shared": "git+https://github.com/Xtify-team/shared.git"
+    "xtify-shared": "github:Xtify-team/shared.git"
   },
   "devDependencies": {
     "@types/minify": "^9.1.4",
