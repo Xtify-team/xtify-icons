@@ -1,11 +1,11 @@
 import {svgs} from "./getAllSvgs";
 import File from 'vinyl';
 import path from "path";
-import * as fs from "fs";
-import {DST} from "./dirs";
 import { sprite } from "./transformer/svg-sprite";
 import { INDEX_CSS } from "./template";
 import { debug } from "./debug";
+import fs from 'fs';
+import { DST, resolve } from "../DIR";
 
 export default function toSpriteSvg() {
     svgs.forEach(({name, path: _path, content}) => {
@@ -26,18 +26,17 @@ export default function toSpriteSvg() {
             dimensions: true,
             prefix: ".xtify-icon.%s",
             sprite: "./sprite.css.svg",
-            template: `a`,
             bust: true,
             render: {
-                css: true,
+                css: false,
             },
-            example: true,
+            example: false,
         },
     }, (error, result: Record<string, File>, data) => {
         Object.keys(result).forEach(key => {
             for (const type of Object.values(result[key])) {
-                fs.mkdirSync(DST("css"), {recursive: true});
-                fs.writeFileSync(path.join(DST("css"), path.basename(type.path)), type.contents);
+                fs.mkdirSync(resolve(DST,"css"), {recursive: true});
+                fs.writeFileSync(path.join(resolve(DST,"css"), path.basename(type.path)), type.contents);
             }
         });
     });

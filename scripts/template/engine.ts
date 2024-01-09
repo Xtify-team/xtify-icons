@@ -3,7 +3,6 @@ import * as fs from "fs";
 import Mustache from "mustache";
 import pkg from "../../package.json";
 import { debug } from "../debug";
-import { minify } from "minify";
 
 const TEMPL_SOURCE_URL = path.resolve(__dirname, "./mustache");
 const TEMPL_DST_CWD = __dirname;
@@ -118,3 +117,4 @@ export const INDEX_CSS = ({}) =>
       return debug.success(INDEX_CSS_DST_URL, "created");
     }
   );
+

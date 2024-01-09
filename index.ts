@@ -5,9 +5,9 @@ import {importModule} from 'local-pkg';
 import {COMPONENT_TSX, INDEX_D_TS, INDEX_TS, README} from "./scripts/template";
 import {svgs} from "./scripts/getAllSvgs";
 import {debug} from "./scripts/debug";
-import {only} from "./scripts/dirs";
 import toSpriteSvg from "./scripts/toSpriteSvg";
 import { SvgCompilerToReact } from './scripts/transformer/svg-component';
+import { only } from './DIR';
 
 
 function writeDoc() {

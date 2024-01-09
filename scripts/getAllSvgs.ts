@@ -1,5 +1,5 @@
 import fg, {Entry} from "fast-glob";
-import {BASE_ICON_DIR, CWD, only} from "./dirs";
+import {BASE_ICON_DIR, CWD, only, resolve} from "../DIR";
 import * as fs from "fs";
 
 
@@ -8,11 +8,11 @@ export const withSvgContent = (svgs: Entry[]) => svgs
         return {
             name: only(name),
             path,
-            content: fs.readFileSync(path).toString(),
+            content: fs.readFileSync(resolve(path)).toString(),
         };
     });
 
 export const svgs = withSvgContent(fg.globSync(
     [BASE_ICON_DIR],
-    {objectMode: true, onlyFiles: true, dot: true, cwd: CWD}
+    {objectMode: true, onlyFiles: true, dot: true, cwd: CWD }
 ));
