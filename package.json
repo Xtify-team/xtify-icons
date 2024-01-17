@@ -4,7 +4,6 @@
   "description": "",
   "main": "dist/tsx/index.tsx",
   "scripts": {
-    "postinstall": "npm run build",
     "build": "pnpx esno index.ts"
   },
   "exports": {
