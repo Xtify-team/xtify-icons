@@ -8,39 +8,41 @@ permissions: write-all
 jobs:
   setup-for-git:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
     steps:
       - name: Checkout
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-          
+
       - name: Setup SSH Keys and known_hosts
         uses: webfactory/ssh-agent@v0.8.0
         with:
-             ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
         env:
-            ACTIONS_ALLOW_UNSECURE_COMMANDS: "true"
-            
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: "true"
+
       - name: Setup Nodejs
         uses: actions/setup-node@v3
         with:
-          node-version: 21
-      
+          node-version: 18.18.0
+
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: 8
-          
+          version: 8.10.5
+
       - name: Build
         run: |
           pnpm install
-          pnpm build 
-          
+
+      - name: Pick File
+        run: |
+          mv README.md dist/
+          mv package.json dist/
+
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           publish_branch: release
-          
+

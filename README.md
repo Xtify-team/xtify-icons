@@ -28,6 +28,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 |-----|------|
 |ASCII-to-Hex|![ASCII-to-Hex](src/ASCII-to-Hex.svg)|
 |Avatar|![Avatar](src/Avatar.svg)|
+|Avatar_notlogin|![Avatar_notlogin](src/Avatar_notlogin.svg)|
 |Backslash-Escape-1|![Backslash-Escape-1](src/Backslash-Escape-1.svg)|
 |Backslash-Escape|![Backslash-Escape](src/Backslash-Escape.svg)|
 |Base64-Image-Encode-Decode|![Base64-Image-Encode-Decode](src/Base64-Image-Encode-Decode.svg)|
