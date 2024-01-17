@@ -39,6 +39,7 @@ jobs:
         run: |
           mv README.md dist/
           mv package.json dist/
+          mv src/ dist/
 
       - uses: peaceiris/actions-gh-pages@v3
         with:
