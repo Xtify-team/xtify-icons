@@ -2,25 +2,26 @@
   "name": "xtify-icons",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/tsx/index.tsx",
+  "main": "./tsx/index.tsx",
   "scripts": {
     "build": "pnpx esno index.ts"
   },
   "exports": {
     ".": {
-      "default": "./dist/tsx/index.tsx",
-      "require": "./dist/tsx/index.tsx",
+      "default": "./tsx/index.tsx",
+      "require": "./tsx/index.tsx",
       "types": [
-        "./dist/tsx/index.d.ts"
+        "./tsx/index.d.ts"
       ]
     },
     "./css": {
-      "import": "./dist/css/index.css",
-      "require": "./dist/css/index.css"
+      "import": "./css/index.css",
+      "require": "./css/index.css"
     }
   },
   "files": [
-    "dist"
+    "css/*",
+    "tsx/*"
   ],
   "keywords": [],
   "author": "",
